@@ -8,26 +8,27 @@ if(!valorAtual){
     valorAtual = Number(valorAtual);
 }
 document.addEventListener("DOMContentLoaded", () => {
-    const elemento = document.getElementByld("contador");
+    const elemento = document.getElementById("contador");
 
-    elemento.innerText = valorAtual.toLocaleString(pt-BR);
+    elemento.innerText = valorAtual.toLocaleString("pt-BR");
 
     const porcentagem = (valorAtual / meta) * 100;
 
-    document.getElementByld("barra").style.width = 
+    document.getElementById("barra").style.width = 
         porcentagem + "%";
 
 });
 let valorSelecionado = 0;
 
-function selecionarValor(valor, botão){
+function selecionarValor(valor, botao){
     valorSelecionado = valor;
 
-    document.querySelectorAll(".valores button").forEach(b=>{
+    document.querySelectorAll(".botoes-valores button").forEach(b=>{
         b.classList.remove("ativo");
     });
 
 botao.classList.add("ativo");
+}
 
 function irParaPagamento(){
 
@@ -38,11 +39,11 @@ function irParaPagamento(){
     valorAtual += valorSelecionado;
     localStorage.setItem("valorArrecadado", valorAtual);
 
-    const link = "https://nubank.com.br/cobrar/17dl27/69a48122-a633-4095-9844-337c3d803ca7?amount=" + valor selecionado;
+    const link = "https://nubank.com.br/cobrar/17dl27/69a48122-a633-4095-9844-337c3d803ca7?amount=" + valorSelecionado;
 
     window.open(link, "_blank");
 
-    setTimeOut(()=> {
+    setTimeout(()=> {
         window.location.href = "obrigado.html";
     },3000);
 }
@@ -68,3 +69,4 @@ function criarCoracao(){
 }
 
 setInterval(criarCoracao, 400);
+
