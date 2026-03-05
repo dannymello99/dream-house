@@ -7,35 +7,44 @@ if(!valorAtual){
 }else{
     valorAtual = Number(valorAtual);
 }
+
 document.addEventListener("DOMContentLoaded", () => {
+
     const elemento = document.getElementById("contador");
 
-    elemento.innerText = valorAtual.toLocaleString("pt-BR");
+    if(elemento){
+        elemento.innerText = valorAtual.toLocaleString("pt-BR");
+    }
 
-    const porcentagem = (valorAtual / meta) * 100;
+    const porcentagem = Math.min((valorAtual / meta) * 100, 100);
 
-    document.getElementById("barra").style.width = 
-        porcentagem + "%";
+    const barra = document.getElementById("barra");
+    if(barra){
+        barra.style.width = porcentagem + "%";
+    }
 
 });
+
 let valorSelecionado = 0;
 
 function selecionarValor(valor, botao){
+
     valorSelecionado = valor;
 
     document.querySelectorAll(".botoes-valores button").forEach(b=>{
         b.classList.remove("ativo");
     });
 
-botao.classList.add("ativo");
+    botao.classList.add("ativo");
 }
 
 function irParaPagamento(){
 
     if(valorSelecionado === 0){
-        alert("escolha um valor primeiro!");
+        alert("Escolha um valor primeiro!");
         return;
     }
+
     valorAtual += valorSelecionado;
     localStorage.setItem("valorArrecadado", valorAtual);
 
@@ -43,7 +52,7 @@ function irParaPagamento(){
 
     window.open(link, "_blank");
 
-    setTimeout(()=> {
+    setTimeout(()=>{
         window.location.href = "obrigado.html";
     },3000);
 }
@@ -51,7 +60,7 @@ function irParaPagamento(){
 function criarCoracao(){
 
     const area = document.querySelector(".coracoes");
-    if(!area) return; // só roda na página obrigado
+    if(!area) return;
 
     const coracao = document.createElement("div");
 
@@ -69,4 +78,3 @@ function criarCoracao(){
 }
 
 setInterval(criarCoracao, 400);
-
