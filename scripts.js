@@ -1,47 +1,50 @@
-const valorAtual = 1250; 
-const meta = 3000; 
+const meta = 5000;    
 
+let valorAtual = localStorage.getItem("valorArrecadado");
+
+if(!valorAtual){
+    valorAtual = 0;
+}else{
+    valorAtual = Number(valorAtual);
+}
 document.addEventListener("DOMContentLoaded", () => {
+    const elemento = document.getElementByld("contador");
 
-    let contador = 0;
-    const elemento = document.getElementById("contador");
-
-    const animacao = setInterval(() => {
-
-        contador += Math.ceil(valorAtual / 80);
-
-        if (contador >= valorAtual) {
-            contador = valorAtual;
-            clearInterval(animacao);
-        }
-
-        elemento.innerText =
-            contador.toLocaleString("pt-BR");
-
-    }, 20);
+    elemento.innerText = valorAtual.toLocaleString(pt-BR);
 
     const porcentagem = (valorAtual / meta) * 100;
 
-    document.getElementById("barra").style.width =
+    document.getElementByld("barra").style.width = 
         porcentagem + "%";
 
 });
 let valorSelecionado = 0;
 
-function selecionarValor(valor){
+function selecionarValor(valor, botão){
     valorSelecionado = valor;
 
-    alert(`💛 Você escolheu contribuir com R$${valor}.
-Clique em "Quero ajudar" para continuar.`);
-}
+    document.querySelectorAll(".valores button").forEach(b=>{
+        b.classList.remove("ativo");
+    });
+
+botao.classList.add("ativo");
 
 function irParaPagamento(){
 
-    window.open("https://nubank.com.br/cobrar/17dl27/69a48122-a633-4095-9844-337c3d803ca7", "_blank");
+    if(valorSelecionado === 0){
+        alert("escolha um valor primeiro!");
+        return;
+    }
+    valorAtual += valorSelecionado;
+    localStorage.setItem("valorArrecadado", valorAtual);
 
-    setTimeout(() => {
+    const link = "https://nubank.com.br/cobrar/17dl27/69a48122-a633-4095-9844-337c3d803ca7?amount=" + valor selecionado;
+
+    window.open(link, "_blank");
+
+    setTimeOut(()=> {
         window.location.href = "obrigado.html";
-    }, 3000);
+    },3000);
 }
 
 function criarCoracao(){
@@ -64,5 +67,4 @@ function criarCoracao(){
     },7000);
 }
 
-/* cria vários corações ao abrir */
 setInterval(criarCoracao, 400);
