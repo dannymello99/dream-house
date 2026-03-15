@@ -10,58 +10,75 @@
 
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <h1>✨ Ajude a realizar um sonho</h1>
+    <h1>✨ Ajude a realizar um sonho</h1>
 
-        <p>
-            Essa vaquinha foi criada com o objetivo de ajudar alguém
-            a conquistar o sonho de morar sozinho e começar uma nova fase da vida.
-            Faça uma boa ação e contribua você também ❤️
-        </p>
+    <p>
+        Essa vaquinha foi criada com o objetivo de ajudar alguém
+        a conquistar o sonho de morar sozinho e começar uma nova fase da vida.
+        Faça uma boa ação e contribua você também ❤️
+    </p>
+
     <div class="progresso-area">
 
-            <h2>💰 Já arrecadado</h2>
+        <h2>💰 Já arrecadado</h2>
 
-            <div class="valor">
-                R$ <span id="contador">0</span>
-            </div>
+        <div class="valor">
+            R$ <span id="contador">0</span>
+        </div>
 
-            <div class="barra">
-                <div class="barra-preenchida" id="barra"></div>
-            </div>
+        <div class="barra">
+            <div class="barra-preenchida" id="barra"></div>
+        </div>
 
-            <p class="meta">Meta: R$ 3.000</p>
+        <p class="meta">Meta: R$ 3.000</p>
+
+    </div>
+
     <div class="valores-sugeridos">
 
         <p>Escolha um valor para ajudar 💛</p>
 
-    <div class="botoes-valores">
-        <button onclick="selecionarValor(10,this)">R$10</button>
-        <button onclick="selecionarValor(25,this)">R$25</button>
-        <button onclick="selecionarValor(50,this)">R$50</button>
-        <button onclick="selecionarValor(100,this)">R$100</button>
+        <div class="botoes-valores">
+            <button onclick="selecionarValor(10,this)">R$10</button>
+            <button onclick="selecionarValor(25,this)">R$25</button>
+            <button onclick="selecionarValor(50,this)">R$50</button>
+            <button onclick="selecionarValor(100,this)">R$100</button>
+        </div>
+
     </div>
+
+    <div class="valor-personalizado">
+
+        <h2>Escolha quanto deseja ajudar</h2>
+
+        <input 
+        type="number" 
+        id="valorLivre" 
+        placeholder="Digite o valor em R$"
+        min="1"
+        >
+
+        <button onclick="gerarPix()">Gerar PIX</button>
+
+        <div id="areaPix"></div>
+
+    </div>
+
+    <button class="btn-ajudar" onclick="irParaPagamento()">
+        💖 Quero ajudar
+    </button>
 
 </div>
 
-    </div>
+<!-- BOTÃO WHATSAPP -->
+<a href="https://wa.me/5598984088614?text=Olá!%20Vim%20pela%20vaquinha%20online!" class="whatsapp-float" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+</a>
 
-        <button class="btn-ajudar" onclick="irParaPagamento()">
-            💖 Quero ajudar
-        </button>
-
-    </div>
-
-    <!-- BOTÃO WHATSAPP -->
-    <a href="https://wa.me/5598984088614?text=Olá!%20Vim%20pela%20vaquinha%20online!" class="whatsapp-float" target="_blank">
-
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
-    </a>
-    <script src="scripts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="scripts.js"></script>
 
 </body>
-
-
 </html>
-
