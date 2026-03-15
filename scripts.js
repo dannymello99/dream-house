@@ -8,6 +8,14 @@ if(!valorAtual){
     valorAtual = Number(valorAtual);
 }
 
+/* LINKS DE PAGAMENTO */
+const links = {
+    10: "https://nubank.com.br/cobrar/17dl27/69b71d0d-c508-421e-bd35-8a53ed85ebb8",
+    25: "https://nubank.com.br/cobrar/17dl27/69b71f7a-72c8-459a-a465-37d7581ae716",
+    50: "https://nubank.com.br/cobrar/17dl27/69b72094-ffe2-4c1b-aafb-cd27cf4124d4",
+    100: "https://nubank.com.br/cobrar/17dl27/69b7211e-1adc-4847-ac0c-9f322294bef1"
+};
+
 document.addEventListener("DOMContentLoaded", () => {
 
     const elemento = document.getElementById("contador");
@@ -17,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         maximumFractionDigits: 2
     });
 
-    const porcentagem = Math.min((valorAtual / meta) * 100,100);
+    const porcentagem = Math.min((valorAtual / meta) * 100, 100);
 
     document.getElementById("barra").style.width =
         porcentagem + "%";
@@ -44,14 +52,17 @@ function irParaPagamento(){
         return;
     }
 
-    valorAtual += valorSelecionado;
+    const link = links[valorSelecionado];
 
-    localStorage.setItem("valorArrecadado", valorAtual);
-
-    const link =
-    "https://nubank.com.br/cobrar/17dl27/69a48122-a633-4095-9844-337c3d803ca7?amount=" + valorSelecionado;
+    if(!link){
+        alert("Valor não disponível para pagamento.");
+        return;
+    }
 
     window.open(link, "_blank");
+
+    valorAtual += valorSelecionado;
+    localStorage.setItem("valorArrecadado", valorAtual);
 
     setTimeout(()=>{
         window.location.href = "obrigado.html";
@@ -79,4 +90,3 @@ function criarCoracao(){
 }
 
 setInterval(criarCoracao, 400);
-
