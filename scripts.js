@@ -196,3 +196,27 @@ document.getElementById("modalPix").addEventListener("click", function(e){
     }
 
 });
+
+function resetarBarraTeste() {
+    // Zera o valor armazenado
+    localStorage.setItem("valorArrecadado", 0);
+
+    // Atualiza a variável do código
+    valorAtual = 0;
+
+    // Atualiza a barra e contador na página
+    const contador = document.getElementById("contador");
+    if(contador){
+        contador.innerText = valorAtual.toLocaleString("pt-BR", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+    }
+
+    const barra = document.getElementById("barra");
+    if(barra){
+        barra.style.width = "0%";
+    }
+
+    console.log("✅ Barra resetada!"); // só aparece no console para você
+}
